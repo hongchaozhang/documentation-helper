@@ -53,11 +53,11 @@ Install dependencies
 Set the environment variables into the `.env` file:
 
 ```bash
-AZURE_OPENAI_API_KEY="b7ad46f3bc944a15a4ae018782505737"
-AZURE_OPENAI_ENDPOINT="https://test-ai.azure-api.net"
-OPENAI_API_VERSION="2023-05-15"
+AZURE_OPENAI_API_KEY="your_openai_api_key"
+AZURE_OPENAI_ENDPOINT="https://api.openai.com"
+OPENAI_API_VERSION="2020-08-01"
 
-PINECONE_API_KEY=46036ef7-0848-4a9c-a0e4-43641308f882
+PINECONE_API_KEY="your_pinecone_api_key"
 ````
 
 Start the flask server
