@@ -7,17 +7,23 @@ import os
 from langchain_community.document_loaders import ReadTheDocsLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 
+INDEX_NAME = "langchain-concepts"
 
-INDEX_NAME = "langchain-doc-index"
+# embeddings = OpenAIEmbeddings(model="text-embedding-3-small",
+#                               openai_api_key=os.getenv("OPENAI_API_KEY"),
+#                               openai_api_base=os.getenv("OPENAI_API_BASE"))
 
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings = AzureOpenAIEmbeddings(model="text-embedding-3-small",
+                                   openai_api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+                                   azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                                   openai_api_version=os.getenv("OPENAI_API_VERSION"))
 
 
 def ingest_docs():
     loader = ReadTheDocsLoader(
-        "langchain-docs/api.python.langchain.com/en/latest/chains"
+        "langchain-docs/python.langchain.com/v0.2/docs"
     )
 
     raw_documents = loader.load()
